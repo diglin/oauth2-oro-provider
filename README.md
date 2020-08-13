@@ -1,4 +1,4 @@
-# OAUth2 Client for OroPlatform based applications
+# OAuth2 Client for OroPlatform based applications
 
 ## Introduction
 
