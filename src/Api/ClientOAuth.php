@@ -3,14 +3,14 @@
  * Diglin GmbH - Switzerland.
  *
  * @author      Sylvain Rayé <support at diglin.com>
- * @category    OAuth2Oro
+ * @category    OAuth2OroBundle
  * @copyright   2020 - Diglin (https://www.diglin.com)
  */
 declare(strict_types=1);
 
-namespace Diglin\OAuth2Oro\Client\Api;
+namespace Diglin\OAuth2OroBundle\Api;
 
-use Diglin\OAuth2Oro\Client\Api\Provider\PostAuthOptionProvider;
+use Diglin\OAuth2OroBundle\Api\Provider\PostAuthOptionProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
 use League\OAuth2\Client\Token\AccessTokenInterface;
@@ -73,6 +73,7 @@ final class ClientOAuth implements ClientOAuthInterface
                     'redirectUri'             => null,
                     'urlAuthorize'            => null,
                     'urlResourceOwnerDetails' => null,
+                    'timeout'                 => 15
                 ],
                 ['optionProvider' => new PostAuthOptionProvider()]
             );

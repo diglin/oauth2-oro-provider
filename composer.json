@@ -1,6 +1,6 @@
 {
     "name": "diglin/oauth2-oro-provider",
-    "description": "OAuth2 Oro Client provider",
+    "description": "Symfony bundle - OAuth2 Oro Client provider",
     "license": "MIT",
     "authors": [
         {
@@ -9,12 +9,13 @@
         }
     ],
     "require": {
-        "league/oauth2-client": "^2.4.0"
+        "league/oauth2-client": "^2.4"
     },
+    "type": "symfony-bundle",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Diglin\\OAuth2Oro\\Client\\": "src"
+            "Diglin\\OAuth2OroBundle\\": "src"
         }
     }
 }

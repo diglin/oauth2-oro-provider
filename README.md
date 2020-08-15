@@ -42,7 +42,7 @@ parameters:
     diglin_oro_client.api.grant_type: "password" # possible values: client_credentials or password
 ```
 
-- `url`: should looks like `http://my-domain.com/oauth2-token`
+- `url`: should looks like `http://my-domain.com`
 - `client_id` and `client_secret`: you can get the value from OroCRM - see [https://doc.oroinc.com/user/back-office/system/user-management/oauth-app/#oauth-applications](https://doc.oroinc.com/user/back-office/system/user-management/oauth-app/#oauth-applications)
 - `grant_type`: can be `password` or `client_credentials`
 
@@ -52,7 +52,7 @@ The Client Credentials type is used for machine-to-machine authentication (e.g.,
 
 ## Usage
 
-Create an Endpoint implementing the `\Diglin\OAuth2Oro\Client\Api\Endpoints\EndpointInterface` interface. Your class can looks like this:
+Create an Endpoint implementing the `\Diglin\OAuth2OroBundle\Api\Endpoints\EndpointInterface` interface. Your class can looks like this:
 
 ```php
 <?php
@@ -85,7 +85,7 @@ class MyEndpoint implements EndpointInterface
                               ]);
 
         $client = $this->factory->create();
-        return $client->request(\Diglin\OAuth2Oro\Client\Api\ClientOAuthInterface::REQUEST_GET, $this->getEndpoint(), ['body' => $myJsonData]);
+        return $client->request(\Diglin\OAuth2OroBundle\Api\ClientOAuthInterface::REQUEST_GET, $this->getEndpoint(), ['body' => $myJsonData]);
     }
 
     public function getEndpoint(): string
@@ -100,7 +100,7 @@ Then in your code you can do the following (be aware, the code below should be a
 
 ```php
 $settings = $container->get('diglin_oro.api.client_settings');
-$factory = new \Diglin\OAuth2Oro\Client\Api\ClientOAuthFactory(\Diglin\OAuth2Oro\Client\Api\ClientOAuth::class, $settings);
+$factory = new \Diglin\OAuth2OroBundle\Api\ClientOAuthFactory(\Diglin\OAuth2OroBundle\Api\ClientOAuth::class, $settings);
 $endpoint = new \Acme\Oro\MyEndpoint($factory);
 
 $users = $endpoint->get();
