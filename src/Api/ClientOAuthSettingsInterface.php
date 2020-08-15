@@ -16,6 +16,6 @@ interface ClientOAuthSettingsInterface
     public function getGrantType(): string;
     public function getClientId(): string;
     public function getClientSecret(): string;
-    public function getUsername(): string;
-    public function getPassword(): string;
+    public function getUsername(): ?string;
+    public function getPassword(): ?string;
 }

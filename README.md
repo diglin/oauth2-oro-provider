@@ -20,6 +20,30 @@ Via composer:
 
 Configure the bundle by adding the following lines and correct values onto `config/packages/_sylius.yml`.
 
+```
+# Default configuration for extension with alias: "diglin_o_auth2_oro"
+diglin_oro_client:
+    api:
+
+        # Url of the Oro Application, without trailing slash
+        url:                  ~ # Required
+
+        # Client ID: see documentation to get the value
+        client_id:            ~ # Required
+
+        # Client secret: see documentation to get the value
+        client_secret:        ~ # Required
+
+        # Username: required if grant_type = password
+        username:             null
+
+        # Password: required if grant_type = password
+        password:             null
+
+        # grant_type possible values: client_credentials or password
+        grant_type:           client_credentials # Required
+```
+
 In case you use the `client_credentials` grant_type:
 ```yaml
 parameters:

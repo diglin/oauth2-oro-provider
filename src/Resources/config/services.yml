@@ -1,13 +1,18 @@
 services:
-    diglin_oro.api.client_factory:
+    diglin_oauth2_oro.api.client_factory:
         class: Diglin\OAuth2OroBundle\Api\ClientOAuthFactory
         arguments:
             - '\Diglin\OAuth2OroBundle\Api\ClientOAuth'
-            - '@diglin_oro.api.client_settings'
+            - '@diglin_oauth2_oro.api.client_settings'
 
-    diglin_oro.api.client_settings:
+    diglin_oauth2_oro.api.client_settings:
         class: Diglin\OAuth2OroBundle\Api\ClientOAuthSettings
         public: true
-        calls:
-            - [setContainer, ["@service_container"]]
+        arguments:
+            - ~
+            - ~
+            - ~
+            - ~
+            - ~
+            - ~
 

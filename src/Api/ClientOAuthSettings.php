@@ -10,40 +10,58 @@ declare(strict_types=1);
 
 namespace Diglin\OAuth2OroBundle\Api;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-
-class ClientOAuthSettings implements ClientOAuthSettingsInterface, ContainerAwareInterface
+final class ClientOAuthSettings implements ClientOAuthSettingsInterface
 {
-    use ContainerAwareTrait;
+    private $url;
+    private $clientId;
+    private $clientSecret;
+    private $grantType;
+    private $username;
+    private $password;
+
+    public function __construct(
+        string $url,
+        string $clientId,
+        string $clientSecret,
+        string $grantType = 'client_credentials',
+        ?string $username = null,
+        ?string $password = null
+    ) {
+        $this->url = $url;
+        $this->clientId = $clientId;
+        $this->clientSecret = $clientSecret;
+        $this->grantType = $grantType;
+        $this->username = $username;
+        $this->password = $password;
+    }
 
     public function getUrl(): string
     {
-        return $this->container->getParameter('diglin_oro_client.api.url');
-    }
-
-    public function getGrantType(): string
-    {
-        return $this->container->getParameter('diglin_oro_client.api.grant_type');
+        return $this->url;
     }
 
     public function getClientId(): string
     {
-        return $this->container->getParameter('diglin_oro_client.api.client_id');
+        return $this->clientId;
     }
 
     public function getClientSecret(): string
     {
-        return $this->container->getParameter('diglin_oro_client.api.client_secret');
+        return $this->clientSecret;
     }
 
-    public function getUsername(): string
+    public function getGrantType(): string
     {
-        return $this->container->getParameter('diglin_oro_client.api.username');
+        return $this->grantType;
     }
 
-    public function getPassword(): string
+    public function getUsername(): ?string
     {
-        return $this->container->getParameter('diglin_oro_client.api.password');
+        return $this->username;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
     }
 }
