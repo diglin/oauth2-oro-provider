@@ -37,7 +37,7 @@ final class ClientOAuthSettings implements ClientOAuthSettingsInterface
 
     public function getUrl(): string
     {
-        return $this->url;
+        return trim($this->url, '/');
     }
 
     public function getClientId(): string

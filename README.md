@@ -21,8 +21,8 @@ Via composer:
 Configure the bundle by adding the following lines and correct values onto `config/packages/_sylius.yml`.
 
 ```
-# Default configuration for extension with alias: "diglin_o_auth2_oro"
-diglin_oro_client:
+# Default configuration for extension with alias: "diglin_oauth2_oro"
+diglin_oauth2_oro:
     api:
 
         # Url of the Oro Application, without trailing slash
@@ -44,26 +44,17 @@ diglin_oro_client:
         grant_type:           client_credentials # Required
 ```
 
-In case you use the `client_credentials` grant_type:
-```yaml
-parameters:
-    ... 
-    diglin_oro_client.api.url: "<YOUR_URL>"
-    diglin_oro_client.api.client_id: "<ORO_CLIENT_ID>"
-    diglin_oro_client.api.client_secret: "<ORO_CLIENT_SECRET>"
-    diglin_oro_client.api.grant_type: "client_credentials" # possible values: client_credentials or password
-```
+Create an other file at the path `config/packages/diglin_oauth2_oro.yaml` (you can set also this file at environment level, like inot the prod or dev folder.) with the following content:
 
-Or in case you use the `password` grant_type:
 ```yaml
-parameters:
-    ... 
-    diglin_oro_client.api.url: "<YOUR_URL>"
-    diglin_oro_client.api.client_id: "<ORO_CLIENT_ID>"
-    diglin_oro_client.api.client_secret: "<ORO_CLIENT_SECRET>"
-    diglin_oro_client.api.username: "<YOUR_ORO_USERNAME>"
-    diglin_oro_client.api.password: "<YOUR_ORO_PASSWORD>"
-    diglin_oro_client.api.grant_type: "password" # possible values: client_credentials or password
+diglin_oauth2_oro:
+    api:
+        url: "http://my.orocrm.domain"
+        client_id: '<CLIENT_ID_HERE>'
+        client_secret: '<CLIENT_SECRET_HERE>'
+        username: ~ # value only if grant_type = password
+        password: ~ # value only if grant_type = password
+        grant_type: "client_credentials" # client_credentials or password 
 ```
 
 - `url`: should looks like `http://my-domain.com`
@@ -82,17 +73,17 @@ Create an Endpoint implementing the `\Diglin\OAuth2OroBundle\Api\Endpoints\Endpo
 <?php
 namespace Acme\Oro;
 
-class MyEndpoint implements EndpointInterface
+class MyEndpoint implements \Diglin\OAuth2OroBundle\Api\Endpoints\EndpointInterface
 {
     const ENPOINT_CUSTOMER = '/api/users';
     const TYPE = 'users';
 
     /**
-     * @var ClientOAuthFactoryInterface
+     * @var \Diglin\OAuth2OroBundle\Api\ClientOAuthFactoryInterface
      */
     private $factory;
 
-    public function __construct(ClientOAuthFactoryInterface $factory)
+    public function __construct(\Diglin\OAuth2OroBundle\Api\ClientOAuthFactoryInterface $factory)
     {
         $this->factory = $factory;
     }
@@ -133,6 +124,10 @@ $users = $endpoint->get();
 ## Tips
 
 To get the list of available endpoints on your Oro Application, you can request the url `http://myoroapp.com/api/doc` (if you use OroCommerce, there is a difference between frontend and backend, in this case the admin url for backend API may looks like this `http://myoroapp.com/admin/api/doc`)
+
+## TODO
+
+- Storage of the API token and take in account the use of the refresh token
 
 ## License
 
