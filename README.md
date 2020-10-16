@@ -118,7 +118,8 @@ Then in your code you can do the following (be aware, the code below should be a
 ```php
 $settings = $container->get('diglin_oro.api.client_settings');
 $factory = new \Diglin\OAuth2OroBundle\Api\ClientOAuthFactory(\Diglin\OAuth2OroBundle\Api\ClientOAuth::class, $settings);
-$endpoint = new \Acme\Oro\MyEndpoint($factory);
+$client = $factory->create();
+$endpoint = new \Acme\Oro\MyEndpoint($client);
 
 $users = $endpoint->get();
 ```
