@@ -71,7 +71,10 @@ Create an Endpoint implementing the `\Diglin\OAuth2OroBundle\Api\Endpoints\Endpo
 
 ```php
 <?php
+
 namespace Acme\Oro;
+
+use Diglin\OAuth2OroBundle\Api\ClientOAuthInterface;
 
 class MyEndpoint implements \Diglin\OAuth2OroBundle\Api\Endpoints\EndpointInterface
 {
@@ -79,28 +82,27 @@ class MyEndpoint implements \Diglin\OAuth2OroBundle\Api\Endpoints\EndpointInterf
     const TYPE = 'users';
 
     /**
-     * @var \Diglin\OAuth2OroBundle\Api\ClientOAuthFactoryInterface
+     * @var ClientOAuthInterface
      */
-    private $factory;
+    private $client;
 
-    public function __construct(\Diglin\OAuth2OroBundle\Api\ClientOAuthFactoryInterface $factory)
+    public function __construct(ClientOAuthInterface $client)
     {
-        $this->factory = $factory;
+        $this->client = $client;
     }
 
     public function get()
     {
         $myJsonData = \json_encode([
-                                  'data' => [
-                                      'type'       => self::TYPE,
-                                      'attributes' => [
-                                          'my_attribute' => 'my value'
-                                      ],
-                                  ],
-                              ]);
+          'data' => [
+              'type'       => self::TYPE,
+              'attributes' => [
+                  'my_attribute' => 'my value'
+              ],
+          ],
+        ]);
 
-        $client = $this->factory->create();
-        return $client->request(\Diglin\OAuth2OroBundle\Api\ClientOAuthInterface::REQUEST_GET, $this->getEndpoint(), ['body' => $myJsonData]);
+        return $this->client->request(ClientOAuthInterface::REQUEST_GET, $this->getEndpoint(), ['body' => $myJsonData]);
     }
 
     public function getEndpoint(): string
