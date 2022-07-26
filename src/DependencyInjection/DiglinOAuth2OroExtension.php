@@ -32,7 +32,7 @@ class DiglinOAuth2OroExtension extends ConfigurableExtension
         $container->getDefinition('diglin_oauth2_oro.api.client_settings')->replaceArgument(5, $mergedConfig['api']['password']);
     }
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return self::ALIAS;
     }

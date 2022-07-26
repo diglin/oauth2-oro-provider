@@ -23,14 +23,12 @@ class PostAuthOptionProvider extends LeaguePostAuthOptionProvider
             $options['body'] = $this->getAccessTokenBody($params);
         }
 
-        $options = array_merge($options, [
+        return array_merge($options, [
             'headers' =>
                 [
                     'Content-Length' => \mb_strlen($options['body']),
                 ],
         ]);
-
-        return $options;
     }
 
     protected function buildQueryString(array $params): string

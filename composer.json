@@ -9,12 +9,23 @@
         }
     ],
     "require": {
-        "league/oauth2-client": "^2.4"
+        "php": "^7.1|^8.1",
+        "league/oauth2-client": "^2.4",
+        "symfony/config": "^4.4|^5.4|^6.1",
+        "symfony/http-kernel": "^4.4|^5.4|^6.1",
+        "symfony/dependency-injection": "^4.4|^5.4|^6.1"
+    },
+    "require-dev": {
+        "phpcompatibility/php-compatibility": "^9.3"
     },
     "type": "symfony-bundle",
     "autoload": {
         "psr-4": {
             "Diglin\\OAuth2OroBundle\\": "src"
         }
+    },
+    "scripts": {
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
+        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
     }
 }

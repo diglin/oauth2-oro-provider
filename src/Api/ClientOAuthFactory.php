@@ -28,7 +28,7 @@ class ClientOAuthFactory implements ClientOAuthFactoryInterface
     {
         $instance = new $this->clientClassName();
         if (!$instance instanceof ClientOAuthInterface) {
-            throw \Exception(printf('Classname %s does not implements the interface ClientOAuthInterface', $this->clientClassName));
+            throw new \Exception(printf('Classname %s does not implements the interface ClientOAuthInterface', $this->clientClassName));
         }
 
         if ($this->configuration) {

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This Symfony 4.x Bundle allows you to authenticate and connect to OroPlatform based applications API via the OAUth2 protocol.
+This Symfony 4.x|5.x Bundle allows you to authenticate and connect to OroPlatform based applications API via the OAUth2 protocol.
 This bundle extends the `league/oauth2-client` dependency and will be automatically installed. Fur further informations about the dependency, visit the url [https://github.com/thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client) 
 
 ## Compatibility
@@ -127,6 +127,10 @@ $users = $endpoint->get();
 ## Tips
 
 To get the list of available endpoints on your Oro Application, you can request the url `http://myoroapp.com/api/doc` (if you use OroCommerce, there is a difference between frontend and backend, in this case the admin url for backend API may looks like this `http://myoroapp.com/admin/api/doc`)
+
+## PHP Test compatibility
+
+Run ` ./vendor/bin/phpcs -p src --standard=PHPCompatibility --runtime-set testVersion 8.1`
 
 ## TODO
 
