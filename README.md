@@ -7,7 +7,7 @@ This bundle extends the `league/oauth2-client` dependency and will be automatica
 
 ## Compatibility
 
-- OroCRM 4.x with OAuth Server active on OroCRM side - See [API Feature activation](https://doc.oroinc.com/api/enabling-api-feature/) and [OAuth Authentification on OroPlatform](https://doc.oroinc.com/api/authentication/oauth/)
+- OroPlatform 4.x with OAuth Server active on OroPlatform side - See [API Feature activation](https://doc.oroinc.com/api/enabling-api-feature/) and [OAuth Authentification on OroPlatform](https://doc.oroinc.com/api/authentication/oauth/)
 - Symfony 4.x (maybe Symfony 5 as well but not yet tested) 
 
 ## Installation
@@ -18,7 +18,7 @@ Via composer:
 
 ### Configuration
 
-Configure the bundle by adding the following lines and correct values onto `config/packages/_sylius.yml`.
+Configure the bundle by adding the following lines and correct values onto a config YAML file like `config/packages/_sylius.yml` on Sylius.
 
 ```
 # Default configuration for extension with alias: "diglin_oauth2_oro"
@@ -58,7 +58,7 @@ diglin_oauth2_oro:
 ```
 
 - `url`: should looks like `http://my-domain.com`
-- `client_id` and `client_secret`: you can get the value from OroCRM - see [https://doc.oroinc.com/user/back-office/system/user-management/oauth-app/#oauth-applications](https://doc.oroinc.com/user/back-office/system/user-management/oauth-app/#oauth-applications)
+- `client_id` and `client_secret`: you can get the value from OroPlatform - see [https://doc.oroinc.com/user/back-office/system/user-management/oauth-app/#oauth-applications](https://doc.oroinc.com/user/back-office/system/user-management/oauth-app/#oauth-applications)
 - `grant_type`: can be `password` or `client_credentials`
 
 As stated in Oro Documentation:
